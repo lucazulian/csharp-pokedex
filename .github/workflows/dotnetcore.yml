@@ -1,21 +1,31 @@
-name: .NET
+---
+name: dotnetcore
+
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - '**'
+    tags:
+      - "*.*.*"
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.206
+
     - name: Install dotnet ef
       run: dotnet tool install --global dotnet-ef
+
     - name: Build with dotnet
       run: dotnet build --configuration Release csharp-pokedex.sln
 
@@ -23,5 +33,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: run tests
+
+    - name: Run tests
       run: dotnet test csharp-pokedex.sln --configuration Release
