@@ -1,6 +1,8 @@
 # csharp-pokedex
 C# fun Pokedex in the form of REST API
 
+[![CI](https://github.com/lucazulian/csharp-pokedex/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/lucazulian/csharp-pokedex/actions/workflows/dotnetcore.yml)
+
 ## Requirements
   
   - docker **20+**
