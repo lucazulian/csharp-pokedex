@@ -4,7 +4,7 @@
 # @file Makefile
 # @version 0.1
 
-all: init
+all: build
 .PHONY: build run
 
 build:			## Build Docker container application
