@@ -1,7 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using CsharpPokedex.Domain.Clients;
+using Microsoft.Extensions.Logging;
+using Moq;
 using NUnit.Framework;
+
 
 namespace CsharpPokedex.Domain.UnitTests.Clients
 {
@@ -10,14 +13,17 @@ namespace CsharpPokedex.Domain.UnitTests.Clients
     {
         private IPokemonClient sut;
         private TestHttpClientFactory _httpClientFactory;
-
+        private Mock<ILogger<PokemonClient>> _loggerMock;
+        
         [SetUp]
         public void SetUp()
         {
             _httpClientFactory = new TestHttpClientFactory();
+            _loggerMock = new Mock<ILogger<PokemonClient>>();
             
             sut = new PokemonClient(
-                _httpClientFactory.CreateClient()
+                _httpClientFactory.CreateClient(),
+                _loggerMock.Object
             );
         }
 

@@ -3,16 +3,19 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using CsharpPokedex.Domain.Models;
+using Microsoft.Extensions.Logging;
 
 namespace CsharpPokedex.Domain.Clients
 {
     public class PokemonClient : IPokemonClient
     {
         private readonly HttpClient _httpClient;
+        private readonly ILogger<PokemonClient> _logger;
         
-        public PokemonClient(HttpClient httpClient)
+        public PokemonClient(HttpClient httpClient, ILogger<PokemonClient> logger)
         {
             this._httpClient = httpClient;
+            this._logger = logger;
         }
         
         public async Task<Result<PokemonSpecies>> GetByName(string name)
