@@ -11,13 +11,13 @@ namespace CsharpPokedex.Domain.Clients
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<PokemonClient> _logger;
-        
+
         public PokemonClient(HttpClient httpClient, ILogger<PokemonClient> logger)
         {
             this._httpClient = httpClient;
             this._logger = logger;
         }
-        
+
         public async Task<Result<PokemonSpecies>> GetByName(string name)
         {
             var response = await _httpClient
@@ -25,9 +25,23 @@ namespace CsharpPokedex.Domain.Clients
 
             var content = await response.Content.ReadAsStringAsync();
 
+            this.LogResponse(response, content);
+
             return response.IsSuccessStatusCode
                 ? Result.Success<PokemonSpecies>(JsonSerializer.Deserialize<PokemonSpecies>(content))
-                : Result.Failure<PokemonSpecies>(((int)response.StatusCode).ToString());
+                : Result.Failure<PokemonSpecies>(((int) response.StatusCode).ToString());
+        }
+
+        private void LogResponse(HttpResponseMessage httpResponseMessage, string responseContent)
+        {
+            this._logger.LogInformation(httpResponseMessage.ToString());
+
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                this._logger.LogError(
+                    $"Failed getting pokemon: {httpResponseMessage.StatusCode} - {httpResponseMessage.ReasonPhrase} - {responseContent}"
+                );
+            }
         }
     }
 }

@@ -11,10 +11,11 @@ namespace CsharpPokedex.Domain.UnitTests.Clients
     [TestFixture]
     public class PokemonClientTests
     {
-        private IPokemonClient sut;
         private TestHttpClientFactory _httpClientFactory;
         private Mock<ILogger<PokemonClient>> _loggerMock;
         
+        private IPokemonClient sut;
+     
         [SetUp]
         public void SetUp()
         {
