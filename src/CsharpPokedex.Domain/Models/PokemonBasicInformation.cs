@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace CsharpPokedex.Domain.Models
 {
-    public class Pokemon
+    public class PokemonBasicInformation
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }

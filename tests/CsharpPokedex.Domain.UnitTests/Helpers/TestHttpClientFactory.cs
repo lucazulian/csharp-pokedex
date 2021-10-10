@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http;
 
-namespace CsharpPokedex.Domain.UnitTests
+namespace CsharpPokedex.Domain.UnitTests.Helpers
 {
     public class TestHttpClientFactory : IDisposable
     {

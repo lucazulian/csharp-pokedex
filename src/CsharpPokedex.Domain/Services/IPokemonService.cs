@@ -6,6 +6,6 @@ namespace CsharpPokedex.Domain.Services
 {
     public interface IPokemonService
     {
-        Task<Result<Pokemon>> GetByName(string name);
+        Task<Result<PokemonBasicInformation>> GetByName(string name);
     }
 }
