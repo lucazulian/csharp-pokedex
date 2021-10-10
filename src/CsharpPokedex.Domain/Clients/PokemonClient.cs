@@ -8,17 +8,16 @@ namespace CsharpPokedex.Domain.Clients
 {
     public class PokemonClient : IPokemonClient
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
         
-        public PokemonClient(IHttpClientFactory httpClientFactory)
+        public PokemonClient(HttpClient httpClient)
         {
-            this._httpClientFactory = httpClientFactory;
+            this._httpClient = httpClient;
         }
         
         public async Task<Result<PokemonSpecies>> GetByName(string name)
         {
-            var response = await _httpClientFactory
-                .CreateClient()
+            var response = await _httpClient
                 .GetAsync($"https://pokeapi.co/api/v2/pokemon-species/{name}");
 
             var content = await response.Content.ReadAsStringAsync();

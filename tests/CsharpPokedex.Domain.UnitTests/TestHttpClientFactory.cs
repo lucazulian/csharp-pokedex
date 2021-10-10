@@ -3,22 +3,23 @@ using System.Net.Http;
 
 namespace CsharpPokedex.Domain.UnitTests
 {
-    public class TestHttpClientFactory : IHttpClientFactory, IDisposable
+    public class TestHttpClientFactory : IDisposable
     {
-        private readonly HttpClient httpClient;
+        private readonly HttpClient _httpClient;
+        
         public TestHttpClientFactory()
         {
-            httpClient = new HttpClient();
+            _httpClient = new HttpClient();
         }
 
-        public HttpClient CreateClient(string name)
+        public HttpClient CreateClient()
         {
-            return httpClient;
+            return _httpClient;
         }
 
         public void Dispose()
         {
-            httpClient?.Dispose();
+            _httpClient?.Dispose();
         }
     }
 }

@@ -9,22 +9,22 @@ namespace CsharpPokedex.Domain.UnitTests.Clients
     public class PokemonClientTests
     {
         private IPokemonClient sut;
-        private TestHttpClientFactory httpClientFactory;
+        private TestHttpClientFactory _httpClientFactory;
 
         [SetUp]
         public void SetUp()
         {
-            httpClientFactory = new TestHttpClientFactory();
+            _httpClientFactory = new TestHttpClientFactory();
             
             sut = new PokemonClient(
-                httpClientFactory
+                _httpClientFactory.CreateClient()
             );
         }
 
         [TearDown]
         public void TearDown()
         {
-            httpClientFactory.Dispose();
+            _httpClientFactory.Dispose();
         }
 
         [Test]
