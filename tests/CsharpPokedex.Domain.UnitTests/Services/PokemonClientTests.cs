@@ -12,14 +12,18 @@ namespace CsharpPokedex.Domain.UnitTests.Services
     public class PokemonClientTests
     {
         private Mock<IPokemonClient> _pokemonClient;
+        private Mock<ITranslationService> _translationService;
         private IPokemonService sut;
 
         [SetUp]
         public void SetUp()
         {
             this._pokemonClient = new Mock<IPokemonClient>();
+            this._translationService = new Mock<ITranslationService>();
 
-            this.sut = new PokemonService(this._pokemonClient.Object);
+            this.sut = new PokemonService(
+                this._pokemonClient.Object,
+                this._translationService.Object);
         }
 
         [TearDown]

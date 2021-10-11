@@ -53,7 +53,7 @@ namespace CsharpPokedex.Api.IntegrationTests
 
         [Test]
         [TestCase("500", HttpStatusCode.InternalServerError)]
-        [TestCase("429", HttpStatusCode.TooManyRequests)]
+        [TestCase("404", HttpStatusCode.NotFound)]
         public async Task ShouldGetInternalServerErrorCodeOnPokemonClientError(string errorCode,
             HttpStatusCode expectedStatus)
         {

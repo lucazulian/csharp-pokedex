@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using CsharpPokedex.Domain.Models;
 using CsharpPokedex.Domain.Services;
 using Microsoft.AspNetCore.Http;
@@ -24,13 +25,27 @@ namespace CsharpPokedex.Api.Controllers
         [HttpGet("{name}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PokemonBasicInformation))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<PokemonBasicInformation>> GetByName([FromRoute] string name)
         {
+            return await Get(name, (x) => _pokemonService.GetByName(x));
+        }
+        
+        [HttpGet("translated/{name}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PokemonBasicInformation))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<PokemonBasicInformation>> GetTranslatedByName([FromRoute] string name)
+        {
+            return await Get(name, (x) => _pokemonService.GetTranslatedByName(x));
+        }
+
+        private async Task<ActionResult<PokemonBasicInformation>> Get(string name,
+            Func<String, Task<Result<PokemonBasicInformation>>> service)
+        {
             try
             {
-                var pokemonBasicInformation = await _pokemonService.GetByName(name);
+                var pokemonBasicInformation = await service.Invoke(name);
                 if (pokemonBasicInformation.IsFailure)
                 {
                     var error = pokemonBasicInformation.Error;

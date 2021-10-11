@@ -49,7 +49,7 @@ namespace CsharpPokedex.Api.IntegrationTests
 
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsTrue(HttpStatusCode.OK == response.StatusCode);
-            
+
             var actualPokemon = await response.Content.ReadFromJsonAsync<PokemonBasicInformation>();
 
             Assert.IsNotNull(actualPokemon);
