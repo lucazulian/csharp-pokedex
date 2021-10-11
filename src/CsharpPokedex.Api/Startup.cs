@@ -30,6 +30,7 @@ namespace CsharpPokedex.Api
             services.AddHttpClient();
             
             services.AddScoped<IPokemonClient, PokemonClient>();
+            services.AddScoped<IFunTranslationsClient, FunTranslationsClient>();
             services.AddScoped<IPokemonService, PokemonService>();
         }
 

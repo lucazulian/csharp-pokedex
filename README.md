@@ -33,3 +33,4 @@ TODO
 - [ ] add distributed cache in order to avoid unnecessary requests and to speed up hypothetical workload;
 - [ ] add tracing system for complete application observability;
 - [ ] add rate limiting in order to avoid excessive 3rd part systems workload;
+- [ ] in test suite avoid real request to 3rd part API;
