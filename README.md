@@ -7,7 +7,6 @@ C# fun Pokedex in the form of REST API
   
   - docker **20+**
   - GNU make **4+**
-  - dotnet **5.0.206**
 
 ## Repository conventions
 
@@ -27,7 +26,28 @@ run                            Run Docker container application
 ```
 
 ## How to use
-TODO
+
+The application is containerized in Docker and uses makefile as utility.
+Check basic requirements listed in `Requirements` section.
+
+To run the application follow these steps:
+
+Open a terminal and start the application with this command:
+```bash
+  make run
+```
+the container with the API should now be running on port 5000 and it should start logging some information.
+
+For the first endpoint `Basic Pokemon Information` run this command:
+
+```bash
+  http http://localhost:5000/pokemon/bulbasaur
+```
+
+For the second endpoint `Translated Pokemon Description` run this command:
+```bash
+  http http://localhost:5000/pokemon/translated/mewtwo
+```
 
 ## Improvements / Missing parts
 - [ ] add distributed cache in order to avoid unnecessary requests and to speed up hypothetical workload;
