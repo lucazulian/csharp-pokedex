@@ -1,15 +1,16 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 
-ENV ASPNETCORE_URLS=https://+:5001;http://+:5000
 WORKDIR /app
-EXPOSE 5000
-EXPOSE 5001
+EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["src/CsharpPokedex.Api/CsharpPokedex.Api.csproj", "CsharpPokedex.Api/"]
+COPY ["src/CsharpPokedex.Domain/CsharpPokedex.Domain.csproj", "CsharpPokedex.Domain/"]
 RUN dotnet restore "CsharpPokedex.Api/CsharpPokedex.Api.csproj"
 COPY ["src/CsharpPokedex.Api/", "CsharpPokedex.Api/"]
+COPY ["src/CsharpPokedex.Domain/", "CsharpPokedex.Domain/"]
 WORKDIR "CsharpPokedex.Api"
 RUN dotnet build "CsharpPokedex.Api.csproj" -c Release -o /app/build
 

@@ -11,7 +11,7 @@ build:			## Build Docker container application
 	docker build -t pokedex .
 
 run: build		## Run Docker container application
-	docker run -p 5000:80 -e "ASPNETCORE_ENVIRONMENT=Development" -t pokedex
+	docker run -p 5000:80 -e "ASPNETCORE_ENVIRONMENT=Production" -t pokedex
 
 help:
 	@echo "Usage: make [command]"
