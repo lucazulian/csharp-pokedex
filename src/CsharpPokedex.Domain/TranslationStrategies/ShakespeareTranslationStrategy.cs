@@ -18,7 +18,7 @@ namespace CsharpPokedex.Domain.TranslationStrategies
         public async Task<string> Translate(string text)
         {
             var (isSuccess, _, value) = await this._translationsClient.Get(this.Name, text);
-            return isSuccess ? value.Contents.Translated : text;
+            return isSuccess ? value.Contents?.Translated : text;
         }
     }
 }

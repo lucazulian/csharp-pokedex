@@ -38,12 +38,11 @@ namespace CsharpPokedex.Api
             services.AddSingleton(x => new YodaTranslationStrategy(x.GetService<IFunTranslationsClient>()));
             services.AddSingleton(x => new ShakespeareTranslationStrategy(x.GetService<IFunTranslationsClient>()));
             services.AddSingleton<ITranslationService>(x =>
-                new TranslationService(x.GetRequiredService<ILogger<TranslationService>>(),
-                    new Dictionary<TranslatorType, ITranslationStrategy>
-                    {
-                        {TranslatorType.Yoda, x.GetRequiredService<YodaTranslationStrategy>()},
-                        {TranslatorType.Shakespeare, x.GetRequiredService<ShakespeareTranslationStrategy>()}
-                    })
+                new TranslationService(new Dictionary<TranslatorType, ITranslationStrategy>
+                {
+                    {TranslatorType.Yoda, x.GetRequiredService<YodaTranslationStrategy>()},
+                    {TranslatorType.Shakespeare, x.GetRequiredService<ShakespeareTranslationStrategy>()}
+                })
             );
         }
 

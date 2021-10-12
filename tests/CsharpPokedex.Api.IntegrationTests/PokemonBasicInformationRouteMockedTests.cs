@@ -54,7 +54,7 @@ namespace CsharpPokedex.Api.IntegrationTests
         [Test]
         [TestCase("500", HttpStatusCode.InternalServerError)]
         [TestCase("404", HttpStatusCode.NotFound)]
-        public async Task ShouldGetInternalServerErrorCodeOnPokemonClientError(string errorCode,
+        public async Task ShouldGetExpectedErrorCodeOnPokemonClientErrorWithPokemonRoute(string errorCode,
             HttpStatusCode expectedStatus)
         {
             const string name = "celebi";
@@ -65,6 +65,25 @@ namespace CsharpPokedex.Api.IntegrationTests
                 .Verifiable();
 
             var response = await _client.GetAsync($"/pokemon/{name}", _tokenSource.Token);
+
+            Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.IsTrue(expectedStatus == response.StatusCode);
+        }
+        
+        [Test]
+        [TestCase("500", HttpStatusCode.InternalServerError)]
+        [TestCase("404", HttpStatusCode.NotFound)]
+        public async Task ShouldGetExpectedErrorCodeOnPokemonClientErrorWithTranslatedRoute(string errorCode,
+            HttpStatusCode expectedStatus)
+        {
+            const string name = "celebi";
+
+            this._pokemonClient
+                .Setup(s => s.GetByName(It.Is<string>(x => x == name)))
+                .ReturnsAsync(Result.Failure<PokemonSpecies>(errorCode))
+                .Verifiable();
+
+            var response = await _client.GetAsync($"/pokemon/translated/{name}", _tokenSource.Token);
 
             Assert.IsFalse(response.IsSuccessStatusCode);
             Assert.IsTrue(expectedStatus == response.StatusCode);

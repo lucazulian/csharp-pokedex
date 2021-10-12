@@ -7,6 +7,7 @@ C# fun Pokedex in the form of REST API
   
   - docker **20+**
   - GNU make **4+**
+  - httpie **2.5.0+**
 
 ## Repository conventions
 
@@ -54,3 +55,4 @@ For the second endpoint `Translated Pokemon Description` run this command:
 - [ ] add tracing system for complete application observability;
 - [ ] add rate limiting in order to avoid excessive 3rd part systems workload;
 - [ ] in test suite avoid real request to 3rd part API;
+- [ ] remove some test boilerplate;
