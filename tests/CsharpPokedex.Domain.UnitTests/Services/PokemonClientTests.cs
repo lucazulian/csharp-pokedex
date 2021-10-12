@@ -30,6 +30,7 @@ namespace CsharpPokedex.Domain.UnitTests.Services
         public void TearDown()
         {
             this._pokemonClient.Verify();
+            this._translationService.Verify();
         }
 
         [Test]

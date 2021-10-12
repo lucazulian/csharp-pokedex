@@ -77,7 +77,7 @@ namespace CsharpPokedex.Domain.UnitTests.Services
         }
 
         [Test]
-        public async Task ShouldReturnCorrectYodaTranslationFromPokemon()
+        public async Task ShouldReturnCorrectShakespeareTranslationFromPokemon()
         {
             var expected_translation =
                 "Thee did giveth mr. Tim a hearty meal,  but unfortunately what he did doth englut did maketh him kicketh the bucket.";

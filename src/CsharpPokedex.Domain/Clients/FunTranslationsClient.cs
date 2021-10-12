@@ -33,12 +33,12 @@ namespace CsharpPokedex.Domain.Clients
             var content = await response.Content.ReadAsStringAsync();
 
             this.LogResponse(response, content);
-            
+
             return response.IsSuccessStatusCode
                 ? Result.Success<Translations>(JsonSerializer.Deserialize<Translations>(content))
                 : Result.Failure<Translations>(((int) response.StatusCode).ToString());
         }
-        
+
         private void LogResponse(HttpResponseMessage httpResponseMessage, string responseContent)
         {
             this._logger.LogInformation(httpResponseMessage.ToString());

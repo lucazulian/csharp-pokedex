@@ -56,3 +56,4 @@ For the second endpoint `Translated Pokemon Description` run this command:
 - [ ] add rate limiting in order to avoid excessive 3rd part systems workload;
 - [ ] in test suite avoid real request to 3rd part API;
 - [ ] remove some test boilerplate;
+- [ ] improve code coverage in Api project;
