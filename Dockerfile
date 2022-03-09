@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0.2 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0.3 AS base
 
 WORKDIR /app
 EXPOSE 80
