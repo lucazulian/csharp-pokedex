@@ -4,7 +4,7 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0.300 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0.302 AS build
 WORKDIR /src
 COPY ["src/CsharpPokedex.Api/CsharpPokedex.Api.csproj", "CsharpPokedex.Api/"]
 COPY ["src/CsharpPokedex.Domain/CsharpPokedex.Domain.csproj", "CsharpPokedex.Domain/"]
